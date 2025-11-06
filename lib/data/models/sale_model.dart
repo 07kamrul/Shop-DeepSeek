@@ -17,7 +17,8 @@ class SaleItem extends Equatable {
   });
 
   double get totalAmount => quantity * unitSellingPrice;
-  double get totalProfit => quantity * (unitSellingPrice - unitBuyingPrice);
+  double get totalCost => quantity * unitBuyingPrice;
+  double get totalProfit => totalAmount - totalCost;
 
   Map<String, dynamic> toMap() {
     return {
@@ -27,6 +28,7 @@ class SaleItem extends Equatable {
       'unitBuyingPrice': unitBuyingPrice,
       'unitSellingPrice': unitSellingPrice,
       'totalAmount': totalAmount,
+      'totalCost': totalCost,
       'totalProfit': totalProfit,
     };
   }
@@ -43,31 +45,37 @@ class SaleItem extends Equatable {
 
   @override
   List<Object?> get props => [
-        productId,
-        productName,
-        quantity,
-        unitBuyingPrice,
-        unitSellingPrice,
-      ];
+    productId,
+    productName,
+    quantity,
+    unitBuyingPrice,
+    unitSellingPrice,
+  ];
 }
 
 class Sale extends Equatable {
   final String? id;
   final DateTime dateTime;
   final List<SaleItem> items;
-  final String? customerId;
+  final String? customerName;
+  final String? customerPhone;
   final String paymentMethod;
   final double totalAmount;
+  final double totalCost;
   final double totalProfit;
+  final String createdBy;
 
   const Sale({
     this.id,
     required this.dateTime,
     required this.items,
-    this.customerId,
+    this.customerName,
+    this.customerPhone,
     required this.paymentMethod,
     required this.totalAmount,
+    required this.totalCost,
     required this.totalProfit,
+    required this.createdBy,
   });
 
   factory Sale.fromFirestore(DocumentSnapshot doc) {
@@ -80,10 +88,13 @@ class Sale extends Equatable {
       id: doc.id,
       dateTime: (data['dateTime'] as Timestamp).toDate(),
       items: items,
-      customerId: data['customerId'],
+      customerName: data['customerName'],
+      customerPhone: data['customerPhone'],
       paymentMethod: data['paymentMethod'] ?? 'cash',
       totalAmount: data['totalAmount']?.toDouble() ?? 0.0,
+      totalCost: data['totalCost']?.toDouble() ?? 0.0,
       totalProfit: data['totalProfit']?.toDouble() ?? 0.0,
+      createdBy: data['createdBy'] ?? '',
     );
   }
 
@@ -91,21 +102,27 @@ class Sale extends Equatable {
     return {
       'dateTime': Timestamp.fromDate(dateTime),
       'items': items.map((item) => item.toMap()).toList(),
-      'customerId': customerId,
+      'customerName': customerName,
+      'customerPhone': customerPhone,
       'paymentMethod': paymentMethod,
       'totalAmount': totalAmount,
+      'totalCost': totalCost,
       'totalProfit': totalProfit,
+      'createdBy': createdBy,
     };
   }
 
   @override
   List<Object?> get props => [
-        id,
-        dateTime,
-        items,
-        customerId,
-        paymentMethod,
-        totalAmount,
-        totalProfit,
-      ];
+    id,
+    dateTime,
+    items,
+    customerName,
+    customerPhone,
+    paymentMethod,
+    totalAmount,
+    totalCost,
+    totalProfit,
+    createdBy,
+  ];
 }

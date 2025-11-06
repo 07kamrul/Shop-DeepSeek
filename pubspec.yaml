@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.11.0-17.0.dev
+  sdk: '^3.9.2'
 
 dependencies:
   flutter:
@@ -21,8 +21,14 @@ dependencies:
   image_picker:
   barcode_scan2:
   cupertino_icons:
-  syncfusion_flutter_charts:
   charts_flutter:
+  syncfusion_flutter_charts:
+  syncfusion_flutter_datepicker:
+  camera:
+  permission_handler:
+  csv:
+  mobile_scanner:
+  share_plus:
 
 dev_dependencies:
   flutter_test:
