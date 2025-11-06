@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop/core/injection_container.dart';
 import '../../../../blocs/auth/auth_bloc.dart';
 import '../../../../blocs/category/category_bloc.dart';
 import '../../../../data/models/category_model.dart';
