@@ -1,0 +1,39 @@
+name: shop_management
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core:
+  firebase_auth:
+  cloud_firestore:
+  flutter_bloc:
+  equatable:
+  get_it:
+  intl:
+  image_picker:
+  barcode_scan2:
+  cupertino_icons:
+  syncfusion_flutter_charts: ^31.2.5
+  syncfusion_flutter_datepicker:
+  camera:
+  permission_handler:
+  csv:
+  mobile_scanner:
+  share_plus:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
